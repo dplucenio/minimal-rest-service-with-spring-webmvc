@@ -12,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StudentsController {
+public class RawStudentsController {
 
   private final StudentService studentService;
   private final ObjectMapper objectMapper;
 
   @Autowired
-  public StudentsController(StudentService studentService, ObjectMapper objectMapper) {
+  public RawStudentsController(StudentService studentService, ObjectMapper objectMapper) {
     this.studentService = studentService;
     this.objectMapper = objectMapper;
   }

@@ -4,8 +4,8 @@ import static io.plucen.utils.HttpMethods.GET;
 import static io.plucen.utils.HttpMethods.POST;
 
 import io.plucen.controllers.Controller;
-import io.plucen.controllers.DashboardController;
-import io.plucen.controllers.StudentsController;
+import io.plucen.controllers.RawDashboardController;
+import io.plucen.controllers.RawStudentsController;
 import io.plucen.utils.HttpMethods;
 import io.plucen.utils.Pair;
 import java.io.IOException;
@@ -19,19 +19,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class MinimalHttpServlet extends HttpServlet {
   private final Map<Pair<String, HttpMethods>, Controller> controllers;
-  private final DashboardController dashboardController;
-  private final StudentsController studentsController;
+  private final RawDashboardController rawDashboardController;
+  private final RawStudentsController rawStudentsController;
 
   @Autowired
   MinimalHttpServlet(
-      DashboardController dashboardController, StudentsController studentsController) {
-    this.dashboardController = dashboardController;
-    this.studentsController = studentsController;
+      RawDashboardController rawDashboardController, RawStudentsController rawStudentsController) {
+    this.rawDashboardController = rawDashboardController;
+    this.rawStudentsController = rawStudentsController;
     controllers =
         Map.of(
-            Pair.of("/", GET), dashboardController::get,
-            Pair.of("/students", GET), studentsController::get,
-            Pair.of("/students", POST), studentsController::post);
+            Pair.of("/", GET), rawDashboardController::get,
+            Pair.of("/students", GET), rawStudentsController::get,
+            Pair.of("/students", POST), rawStudentsController::post);
   }
 
   @Override

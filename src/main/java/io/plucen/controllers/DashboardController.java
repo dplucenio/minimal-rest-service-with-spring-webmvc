@@ -1,15 +1,21 @@
 package io.plucen.controllers;
 
-import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
+import lombok.Data;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@Component
+@Controller
 public class DashboardController {
 
-  public void get(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json; charset=UTF-8");
-    response.getWriter().println("{\"message\": \"dashboard\"}");
+  @GetMapping("/")
+  @ResponseBody
+  public Response index() {
+    return new Response("hello spring Controller!");
+  }
+
+  @Data
+  private static class Response {
+    private final String message;
   }
 }
