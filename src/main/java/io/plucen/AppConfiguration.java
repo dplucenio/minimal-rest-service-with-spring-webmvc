@@ -15,17 +15,4 @@ public class AppConfiguration {
   public ObjectMapper getObjectMapper() {
     return new ObjectMapper();
   }
-
-  //  @Getter private static final StudentRepository studentRepository = new
-  // MemoryStudentRepository();
-  //
-  //  @Getter
-  //  private static final StudentService studentService = new StudentService(studentRepository);
-  //
-  //  @Getter
-  //  private static final StudentsController studentsController =
-  //      new StudentsController(studentService);
-  //
-  //  @Getter private static final DashboardController dashBoardController = new
-  // DashboardController();
 }
