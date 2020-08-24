@@ -8,13 +8,13 @@ The goal is to keep this as simple as possible and cover:
 
 - [x] Refactor [plain java minimal RESTful service](https://github.com/dplucenio/plain-java-minimal-rest-service)
 created previosly to use Spring's IoC Container. 
-- [x] Setting up WebApplicationContext
-- [x] DispatcherServlet
-- [x] Controllers
-- [x] GET endpoint, @ResponseBody
-- [x] POST endpoints, @RequestBody
-- [x] @PathVariable e @RequestParam
-- [x] Global exception handling
+- [ ] Setting up WebApplicationContext
+- [ ] DispatcherServlet
+- [ ] Controllers
+- [ ] GET endpoint, @ResponseBody
+- [ ] POST endpoints, @RequestBody
+- [ ] @PathVariable e @RequestParam
+- [ ] Global exception handling
 
 Progress is going to be stored on different branches, starting from `1-refactor-to-spring-ioc-container`.
 
