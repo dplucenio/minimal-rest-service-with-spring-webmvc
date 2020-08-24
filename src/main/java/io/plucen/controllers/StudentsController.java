@@ -24,7 +24,8 @@ public class StudentsController {
 
   @GetMapping("/students")
   public List<Student> index() {
-    return studentService.index();
+    throw new RuntimeException("Error");
+    //    return studentService.index();
   }
 
   @GetMapping("/students/{id}")
