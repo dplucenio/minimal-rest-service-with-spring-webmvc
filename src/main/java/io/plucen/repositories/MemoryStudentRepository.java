@@ -19,7 +19,7 @@ public class MemoryStudentRepository implements StudentRepository {
 
   @Override
   public Optional<Student> findById(UUID id) {
-    return students.stream().filter(student -> student.getId() == id).findAny();
+    return students.stream().filter(student -> student.getId().equals(id)).findAny();
   }
 
   @Override
