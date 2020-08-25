@@ -1,11 +1,13 @@
 package io.plucen.controllers;
 
+import io.plucen.AppException;
 import io.plucen.entities.Student;
 import io.plucen.services.StudentService;
 import java.util.List;
 import java.util.UUID;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +25,9 @@ public class StudentsController {
   }
 
   @GetMapping("/students")
-  public List<Student> index() {
-    throw new RuntimeException("Error");
+  public List<Student> index() throws AppException {
+    throw new AppException("Error!!!!!!!", HttpStatus.I_AM_A_TEAPOT);
+    //    throw new RuntimeException("Error!!!");
     //    return studentService.index();
   }
 

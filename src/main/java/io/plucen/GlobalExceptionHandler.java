@@ -1,8 +1,6 @@
 package io.plucen;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,17 +9,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-  @ExceptionHandler(RuntimeException.class)
-  @ResponseStatus(HttpStatus.ACCEPTED)
-  public ResponseEntity<ErrorDTO> handleRuntimeException(RuntimeException exception) {
+
+  @ExceptionHandler(AppException.class)
+  public ResponseEntity<ErrorDTO> handleAppException(AppException appException) {
     return new ResponseEntity<>(
-        new ErrorDTO(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        new ErrorDTO(appException.getMessage()), appException.getHttpStatus());
+  }
+
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  @ExceptionHandler(Exception.class)
+  public ErrorDTO handleInternalError(Exception exception) {
+    return new ErrorDTO(exception.getMessage());
   }
 
   @Data
-  @AllArgsConstructor
-  @NoArgsConstructor
-  private class ErrorDTO {
-    private String message;
+  private static class ErrorDTO {
+    private final String message;
   }
 }
