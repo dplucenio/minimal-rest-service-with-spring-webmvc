@@ -1,4 +1,4 @@
-# :leaves: ioc-container-intro
+# :leaves: minimal-rest-service-with-spring-webmvc
 
 Minimalist Java program using only `spring-context` and `spring-webmvc`  for study purposes,
 to better how Spring Boot configures WebApplicationContexts, DispatcherServlet, Controllers, global
