@@ -26,14 +26,23 @@ public class StudentsController {
 
   @GetMapping("/students")
   public List<Student> index() throws AppException {
-    throw new AppException("Error!!!!!!!", HttpStatus.I_AM_A_TEAPOT);
-    //    throw new RuntimeException("Error!!!");
-    //    return studentService.index();
+    return studentService.index();
   }
 
-  @GetMapping("/students/{id}")
-  public Student findById(@PathVariable UUID id) {
-    return studentService.findById(id).orElse(null);
+  @GetMapping("/students/{idString}")
+  public Student findById(@PathVariable String idString) throws AppException {
+    UUID id;
+    try {
+      id = UUID.fromString(idString);
+    } catch (IllegalArgumentException exception) {
+      throw new AppException("invalid id", HttpStatus.BAD_REQUEST);
+    }
+    return studentService
+        .findById(id)
+        .orElseThrow(
+            () ->
+                new AppException(
+                    String.format("There is no user with id %s", id), HttpStatus.BAD_REQUEST));
   }
 
   @PostMapping("/students")
