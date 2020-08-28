@@ -14,7 +14,7 @@ created previosly to use Spring's IoC Container.
 - [x] GET endpoint, @ResponseBody
 - [x] POST endpoints, @RequestBody
 - [x] @PathVariable e @RequestParam
-- [ ] Global exception handling
+- [x] Global exception handling
 
 Progress is going to be stored on different branches, starting from `1-refactor-to-spring-ioc-container`.
 

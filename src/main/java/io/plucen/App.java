@@ -21,6 +21,7 @@ public class App {
     context.refresh();
 
     DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
+    dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
     Wrapper servlet = Tomcat.addServlet(tomcatContext, "dispatcherServlet", dispatcherServlet);
     servlet.setLoadOnStartup(1);
     servlet.addMapping("/*");
