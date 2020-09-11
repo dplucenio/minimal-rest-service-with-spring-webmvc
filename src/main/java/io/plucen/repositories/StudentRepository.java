@@ -12,4 +12,6 @@ public interface StudentRepository {
   Optional<Student> findById(UUID id);
 
   void create(Student student);
+
+  void delete(UUID id);
 }

@@ -8,6 +8,7 @@ import java.util.UUID;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,12 +32,7 @@ public class StudentsController {
 
   @GetMapping("/students/{idString}")
   public Student findById(@PathVariable String idString) throws AppException {
-    UUID id;
-    try {
-      id = UUID.fromString(idString);
-    } catch (IllegalArgumentException exception) {
-      throw new AppException("invalid id", HttpStatus.BAD_REQUEST);
-    }
+    UUID id = getValidaterUuid(idString);
     return studentService
         .findById(id)
         .orElseThrow(
@@ -45,9 +41,25 @@ public class StudentsController {
                     String.format("There is no user with id %s", id), HttpStatus.BAD_REQUEST));
   }
 
+  private UUID getValidaterUuid(@PathVariable String idString) throws AppException {
+    UUID id;
+    try {
+      id = UUID.fromString(idString);
+    } catch (IllegalArgumentException exception) {
+      throw new AppException("invalid id", HttpStatus.BAD_REQUEST);
+    }
+    return id;
+  }
+
   @PostMapping("/students")
   public void create(@RequestBody StudentCreationDTO student) {
     this.studentService.create(student.getName());
+  }
+
+  @DeleteMapping("/students/{idString}")
+  public void delete(@PathVariable String idString) throws AppException {
+    final UUID id = getValidaterUuid(idString);
+    studentService.delete(id);
   }
 
   @Data

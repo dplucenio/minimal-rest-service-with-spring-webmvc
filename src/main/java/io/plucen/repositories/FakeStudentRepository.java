@@ -8,7 +8,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemoryStudentRepository implements StudentRepository {
+public class FakeStudentRepository implements StudentRepository {
 
   private final List<Student> students = new ArrayList<>();
 
@@ -25,5 +25,10 @@ public class MemoryStudentRepository implements StudentRepository {
   @Override
   public void create(Student student) {
     students.add(student);
+  }
+
+  @Override
+  public void delete(UUID id) {
+    students.removeIf(student -> student.getId().equals(id));
   }
 }

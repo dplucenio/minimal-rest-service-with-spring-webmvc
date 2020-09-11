@@ -31,4 +31,8 @@ public class StudentService {
   public Optional<Student> findById(UUID id) {
     return studentRepository.findById(id);
   }
+
+  public void delete(UUID id) {
+    studentRepository.delete(id);
+  }
 }
